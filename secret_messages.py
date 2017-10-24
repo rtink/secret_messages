@@ -41,70 +41,64 @@ def cipher_menu():
             break
 
         if choice in ciphers:
-            '''Input is valid ok to execute cipher'''
+            '''Input is valid, ok to execute cipher'''
             clear()
             cipher_choice = ciphers[choice]
             while True:
-                crypt = {
-                    '1': 'encrypt',
-                    '2': 'decrypt'
-                }
-
-                print("You have selected {}".format(
-                                        str.capitalize(cipher_choice)
-                                        ))
-                choice2 = input(
-                    "Enter 1 if you wish to encrypt or "
-                    "2 if you wish to decrypt-> "
-                    "Enter b to return to the main menu.\n")
+                crypt = {'1': 'encrypt', '2': 'decrypt'}
+                print("Choose a NUMBER from menu below")
+                for key, item in crypt.items():
+                    print("{}: {}".format(key, item))
+                choice2 = input("Enter your number or b to go back->\n")
 
                 if choice2 == 'b':
                     break
 
-                elif choice2 in crypt:
+                if choice2 in crypt:
+                    clear()
                     encrypt_decrypt_choice = crypt[choice2]
-                    message = input(
+                    text = input(
                         "What message do you want to {}->\n".format(
-                            str(encrypt_decrypt_choice)).lower()
-                            )
-
-                if cipher_choice == 'polybius':
-                    if encrypt_decrypt_choice == 'encrypt':
-                        user_choice = Polybius()
-                        user_choice.encrypt(message)
-                        ciper_replay()
-                if cipher_choice == 'polybius':
-                    if encrypt_decrypt_choice == 'decrypt':
-                        user_choice = Polybius()
-                        user_choice.decrypt(message)
-                        ciper_replay()
-                if cipher_choice == 'atbash':
-                    if encrypt_decrypt_choice == 'encrypt':
-                        user_choice = Atbash()
-                        user_choice.encrypt(message)
-                        ciper_replay()
-                if cipher_choice == 'atbash':
-                    if encrypt_decrypt_choice == 'decrypt':
-                        user_choice = Atbash()
-                        user_choice.decrypt(message)
-                        ciper_replay()
-                if cipher_choice == 'keyword':
-                    if encrypt_decrypt_choice == 'encrypt':
-                        user_keyword = input(
-                            "Chose a keyword to use-> \n").lower()
-                        user_choice = Keyword_cipher(user_keyword)
-                        user_choice.encrypt(message)
-                        ciper_replay()
-                if cipher_choice == 'keyword':
-                    if encrypt_decrypt_choice == 'decrypt':
-                        user_keyword = input(
-                            "Chose a keyword to use in the cipher. "
-                            "If you want to decrypt the message you "
-                            "encrypted you must supply the same "
-                            "keyword-> \n").lower()
-                        user_choice = Keyword_cipher(user_keyword)
-                        user_choice.decrypt(message)
-                        ciper_replay()
+                            str(encrypt_decrypt_choice)))
+                    message = text.lower()
+                    while True:
+                        if cipher_choice == 'polybius':
+                            if encrypt_decrypt_choice == 'encrypt':
+                                user_choice = Polybius()
+                                user_choice.encrypt(message)
+                                ciper_replay()
+                        if cipher_choice == 'polybius':
+                            if encrypt_decrypt_choice == 'decrypt':
+                                user_choice = Polybius()
+                                user_choice.decrypt(message)
+                                ciper_replay()
+                        if cipher_choice == 'atbash':
+                            if encrypt_decrypt_choice == 'encrypt':
+                                user_choice = Atbash()
+                                user_choice.encrypt(message)
+                                ciper_replay()
+                        if cipher_choice == 'atbash':
+                            if encrypt_decrypt_choice == 'decrypt':
+                                user_choice = Atbash()
+                                user_choice.decrypt(message)
+                                ciper_replay()
+                        if cipher_choice == 'keyword':
+                            if encrypt_decrypt_choice == 'encrypt':
+                                user_keyword = input(
+                                    "Chose a keyword to use-> \n").lower()
+                                user_choice = Keyword_cipher(user_keyword)
+                                user_choice.encrypt(message)
+                                ciper_replay()
+                        if cipher_choice == 'keyword':
+                            if encrypt_decrypt_choice == 'decrypt':
+                                user_keyword = input(
+                                    "Chose a keyword to use in the cipher.\n"
+                                    "If you want to decrypt the message you "
+                                    "encrypted you must supply the same "
+                                    "keyword-> \n").lower()
+                                user_choice = Keyword_cipher(user_keyword)
+                                user_choice.decrypt(message)
+                                ciper_replay()
 
 
 def ciper_replay():

@@ -1,4 +1,5 @@
 from ciphers import Cipher
+import re
 
 
 class Polybius(Cipher):
@@ -12,13 +13,15 @@ class Polybius(Cipher):
         self.letters = ''.join(self.alpha)
         self.coord = []
 
-        for y in range(6):
-            for x in range(6):
+        for y in range(5):
+            for x in range(5):
                 self.coord.append(str(y) + str(x))
+        self.coord.insert(8, '13')
 
     def encrypt(self, message):
         '''Encrypts a message entered by a user'''
         output = []
+
         for char in message:
             try:
                 message_index = self.letters.index(char)
@@ -30,11 +33,12 @@ class Polybius(Cipher):
     def decrypt(self, message):
         '''Decrypts a message entered by a user'''
         output = []
-        message = (str(message)).replace(" ", "  ")
+        message = (str(message)).replace(" ", "")
+
         for i in range(0, len(message), 2):
             try:
-                combined_letter = message[i] + message[i + 1]
-                message_index = self.coord.index(combined_letter)
+                combined_num = message[i] + message[i + 1]
+                message_index = self.coord.index(combined_num)
                 output.append(self.letters[message_index])
             except ValueError:
                 output.append(message[i])
